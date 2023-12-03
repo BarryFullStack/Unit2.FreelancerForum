@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Forum</title>
+    <style type = text/css>
+        header {
+            text-align: center;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        th {
+            padding-left: 30px;
+            padding-right: 30px;
+            font-size: 24px; 
+        }
+        li { border: 2px solid #333;}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Freelancer Forum</h1>
+        <h3>The average starting price is $</h3>
+        <h2>Available Freelancers</h2>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Name</th>
+                    <th colspan="2">Occupation</th>
+                    <th colspan="2">Starting Price</th>
+                </tr>
+            </thead>
+        </table>
+        <ul id="freelancers"></ul>
+    </main>
+    <script src="FreelancerForum.js"></script>
+</body>
+</html>
