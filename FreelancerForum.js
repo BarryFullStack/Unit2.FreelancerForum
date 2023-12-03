@@ -5,7 +5,7 @@
 const names = ["Alice", "Bob", "Carol", "Lisa", "Jason", "Ann", "Charlie", "Farid", "Leo", "Caitlin"];
 const occupations = ["Writer", "Teacher", "Programmer", "Artist", "Designer", "Graphics", "Illustration", "Videography", "Animator", "Assistant"]
 const prices = [30, 50, 70, 95, 150, 45, 80, 120, 80, 110]
-const maxFreelancers = 4;
+const maxFreelancers = 7;
 //TODO: we are priming an object to hold the randomly generated freelancer information
 const newFreelancers = [
     {
@@ -82,19 +82,18 @@ function render() {
     freelancers.replaceChildren(...freelancerElements);
 
     //render the starting Average price
-    const averagePrices = document.querySelector("#avergae");
-    const averagePriceElements = startingPrices.map((startingPrice) =>{
+    const averagePrices = document.querySelector("#average");
+    const averagePriceElements = startingPrices.map(() =>{
+        const avgElement = document.createElement("h3");
         const average = startingPrices.reduce ((a, b) => a+b) /startingPrices.length;
         console.log(average);
-        const avgElement = document.createElement("p");
-        avgElement.classList.add(startingPrice);
+        //avgElement.classList.add(startingPrice);
         console.log(avgElement);
-        avgElement.textContent = (`The average starting price is $${startingPrice}`);
+        avgElement.textContent = (`The average starting price is $${average.toFixed(2)}`);
         //return arrAvg  / startingPrices.length;
-
         return avgElement;
     });
-    averagePrices.replaceWith(...averagePriceElements)
+    averagePrices.replaceChildren(...averagePriceElements)
 }
 
 //add Carol first per the user description
@@ -124,7 +123,9 @@ function addFreelancer() {
         // add a random starting price
         const price = prices[Math.floor(Math.random() * prices.length)];
 
-        startingPrices.push({price});
+        //I need to seperate the value from the key and then push the value to `startingPrices`
+        startingPrices.push(Object.values(price));
+        
         console.log(startingPrices);
         newFreelancers.push({ name, occupation, price });
 
@@ -139,3 +140,4 @@ function addFreelancer() {
     // }
   }
   
+  //I might want to just seperat out the average code and so it only rnders once and then just replces the ending number
