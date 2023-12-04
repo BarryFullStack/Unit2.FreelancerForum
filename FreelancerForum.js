@@ -1,12 +1,13 @@
 /*State*/
 //Defining our variables for the data the program will need to remember
 
-//TODO: We need arrays for Names, Occupation, and Price for randomly generated freelancers
+//We need arrays for Names, Occupation, and Price for randomly generated freelancers
 const names = ["Alice", "Bob", "Carol", "Lisa", "Jason", "Ann", "Charlie", "Farid", "Leo", "Caitlin"];
 const occupations = ["Writer", "Teacher", "Programmer", "Artist", "Designer", "Graphics", "Illustration", "Videography", "Animator", "Assistant"]
 const prices = [30, 50, 70, 95, 150, 45, 80, 120, 80, 110]
 const maxFreelancers = 7;
-//TODO: we are priming an object to hold the randomly generated freelancer information
+
+//priming an object to hold the randomly generated freelancer information
 const newFreelancers = [
     {
         name: "Alice",
@@ -38,13 +39,11 @@ function randomInterval(min = 2000, max = 5000) {
     return random;
 }
 
-//add carol timed interval
-//const addCarolIntervalId = setTimeout(addCarol, 2000);
+//creating a single h3 element to be replaced at render
+const avgElement = document.createElement("h3");
 
 const addFreelancerIntervalId = setInterval(addFreelancer, randomInterval());
-//need to run the interval each time to get it to vary the freelancer appearance timing
-//const addFreelancerIntervalId = setTimeout(addFreelancer, randomInterval = (Math.random()*(8000 - 2000) +2000));
-//console.log(randomInterval);
+
 //renering the initial state
 render();
 
@@ -54,7 +53,7 @@ Then I want them to be added together and then that total is divided by the arra
 I then want that output to replace the starting value of 0.
 then the text on the webpage updates with "The average starting price is $${currentAverage}."*/
 //gets the average of array startingPrices
-/*
+
 function averagePrices(startingPrices) {
     let arrAvg = 0;
     for (let i = 0; i < startingPrices.length; i++){
@@ -63,9 +62,6 @@ function averagePrices(startingPrices) {
     console.log(arrAvg);
     return arrAvg;
 }
-*/
-
-//I want the text to display as such `${names} ${occupations} $ ${prices}`
 
 //DOM updating the state
 function render() {
@@ -84,7 +80,6 @@ function render() {
     //render the starting Average price
     const averagePrices = document.querySelector("#average");
     const averagePriceElements = startingPrices.map(() =>{
-        const avgElement = document.createElement("h3");
         const average = startingPrices.reduce ((a, b) => a+b) /startingPrices.length;
         console.log(average);
         //avgElement.classList.add(startingPrice);
@@ -95,12 +90,6 @@ function render() {
     });
     averagePrices.replaceChildren(...averagePriceElements)
 }
-
-//add Carol first per the user description
-// function addCarol() {
-//     newFreelancers.push({ name:"Carol", occupation: "Programmer", price: 70});
-//     render();
-// }
 
 // adding a random freelancer to the `newFreelancer` array
 function addFreelancer() {
@@ -124,20 +113,11 @@ function addFreelancer() {
         const price = prices[Math.floor(Math.random() * prices.length)];
 
         //I need to seperate the value from the key and then push the value to `startingPrices`
-        startingPrices.push(Object.values(price));
+        startingPrices.push(price);
         
         console.log(startingPrices);
         newFreelancers.push({ name, occupation, price });
 
-        //need to appened startingPrices with new price then get the new average and replace the value to display
-  
         render();
     }
-  
-    // TODO: Stop adding shapes if we've reached the maximum number of shapes
-    // if (newFreelancers.length >= maxFreelancers) {
-    //   clearInterval(addFreelancerIntervalId);
-    // }
   }
-  
-  //I might want to just seperat out the average code and so it only rnders once and then just replces the ending number
